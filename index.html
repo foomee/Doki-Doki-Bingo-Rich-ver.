@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ドキドキビンゴ</title>
+    <link rel="stylesheet" href="css/style.css">    
+</head>
+<body>
+    <!-- モーダル部分 -->
+    <div class="modal">
+        <div class="modal-content">
+            BINGO!!
+        </div>
+    </div>
+
+    <!-- ビンゴ部分 -->
+    <div class="container">
+        <div class="left">
+            <div class="bingo-table">
+            </div>        
+        </div>
+
+        <div class="right">
+            <div class="lottery">
+                <div id="result">?</div>
+                <button id="draw-button" disabled>抽選する</button>
+            </div>
+            <div class="history">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="player-card"></div>
+        <button id="generate-button">カードを生成する</button>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
