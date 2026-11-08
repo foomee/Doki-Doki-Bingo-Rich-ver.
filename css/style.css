@@ -4,6 +4,8 @@
 
 body { 
     margin: 0; 
+    background-color: #222;
+    color: white;
 }
 
 /* モーダルの背景 */
@@ -86,7 +88,7 @@ body {
 }
 
 .drawn  {
-    background-color: #ffcc00;
+    background-color: #a58400;
 }
 
 .history {
@@ -95,8 +97,22 @@ body {
     gap: 10px;
 }
 
+.player-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    font-size: 35px;
+    margin-top: 20px;
+}
+
 .player-card {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     text-align: center;
+}
+
+#generate-button {
+    padding: 12px 30px;
+    font-size: 18px;
 }
