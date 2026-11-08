@@ -107,9 +107,26 @@ function checkBingo() {
 }
 
 
+// 抽選演出の関数
+function drawAnimation() {
+    const timerId = setInterval(function () {
+        const randomIndex = Math.floor(Math.random() * numbers.length);
+        const animationNumber = numbers[randomIndex];
+
+        result.textContent = animationNumber;
+    }, 50);
+}
+
+
+
+
+
 // 抽選ボタンをクリックしたときの処理
 document.getElementById("draw-button").addEventListener("click", function () {
     
+    // 抽選演出の関数呼び出し
+    drawAnimation();
+
     // 抽選開始後にカード生成ボタンを無効にする
     document.getElementById("generate-button").disabled = true;
     
