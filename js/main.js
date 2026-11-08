@@ -107,25 +107,22 @@ function checkBingo() {
 }
 
 
-// 抽選演出の関数
-function drawAnimation() {
+// 抽選演出
+async function drawAnimation() {
     const timerId = setInterval(function () {
         const randomIndex = Math.floor(Math.random() * numbers.length);
         const animationNumber = numbers[randomIndex];
 
         result.textContent = animationNumber;
     }, 50);
+
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    clearInterval(timerId);
 }
 
-
-
-
-
-// 抽選ボタンをクリックしたときの処理
-document.getElementById("draw-button").addEventListener("click", function () {
-    
-    // 抽選演出の関数呼び出し
-    drawAnimation();
+// 抽選処理
+function executeDraw(randomNumber, randomIndex) {
 
     // 抽選開始後にカード生成ボタンを無効にする
     document.getElementById("generate-button").disabled = true;
@@ -137,10 +134,6 @@ document.getElementById("draw-button").addEventListener("click", function () {
         return;
     }
     
-    // 抽選処理
-    const randomIndex = Math.floor(Math.random() * numbers.length);
-    const randomNumber = numbers[randomIndex];
-
     // 抽選された数字のセルを取得
     const drawnCell = bingoTable.querySelector(
         `[data-number="${randomNumber}"]`
@@ -148,6 +141,7 @@ document.getElementById("draw-button").addEventListener("click", function () {
 
     // そのセルに抽選済みクラスを追加
     drawnCell.classList.add("drawn");
+    
 
     // プレイヤーカードの中から、抽選された数字と一致するマスを探す。
     const playerCell = document.querySelector(
@@ -163,6 +157,7 @@ document.getElementById("draw-button").addEventListener("click", function () {
         marked[row][col] = true;
         
     }
+
 
     // ビンゴ判定関数呼び出しと、ビンゴ演出
     if (!hasBingo && checkBingo()) {
@@ -181,15 +176,25 @@ document.getElementById("draw-button").addEventListener("click", function () {
     numbers.splice(randomIndex, 1);
     drawnNumbers.push(randomNumber);
 
-    // 抽選結果を表示
-    result.textContent = randomNumber;    
-
     // 抽選履歴
     const historyItem = document.createElement("div");
 
     historyItem.textContent = randomNumber;
 
-    history.appendChild(historyItem);
+    history.appendChild(historyItem);    
+}
+
+
+// 抽選ボタンをクリックしたときの処理
+document.getElementById("draw-button").addEventListener("click", async function () {
+
+    // 抽選結果を決める
+    const randomIndex = Math.floor(Math.random() * numbers.length);
+    const randomNumber = numbers[randomIndex];  
+
+    await drawAnimation();
+
+    executeDraw(randomNumber, randomIndex);
 
     // 確認用
     console.log(numbers);
