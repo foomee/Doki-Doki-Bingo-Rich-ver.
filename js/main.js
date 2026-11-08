@@ -109,14 +109,21 @@ function checkBingo() {
 
 // 抽選演出
 async function drawAnimation() {
+    // .result-pop を毎回リセットする
+    result.classList.remove("result-pop");
+    
+    result.classList.add("drawing");
+
     const timerId = setInterval(function () {
         const randomIndex = Math.floor(Math.random() * numbers.length);
         const animationNumber = numbers[randomIndex];
 
         result.textContent = animationNumber;
-    }, 50);
+    }, 25);
 
     await new Promise(resolve => setTimeout(resolve, 500));
+
+    result.classList.remove("drawing");
     
     clearInterval(timerId);
 }
@@ -163,6 +170,11 @@ function executeDraw(randomNumber, randomIndex) {
     modal.addEventListener("click", function() {
         modal.style.display = "none";
     });
+
+
+    // 抽選結果表示時のアニメーション用
+    result.textContent = randomNumber;
+    result.classList.add("result-pop");
 
 
     // 抽選で選ばれた数字を抽選前グループ(numbers)から削除して、抽選後グループ(drawnNumbers)に移す。

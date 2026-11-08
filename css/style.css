@@ -72,6 +72,35 @@ body {
     font-weight: bold;
 }
 
+@keyframes drawing {
+    from {
+        font-size: 1px;
+    }
+    to {
+        font-size: 80px;
+    }
+}
+
+#result.drawing {
+    animation: drawing 0.5s linear forwards;
+}
+
+@keyframes result-pop {
+    0% {
+        font-size: 80px;
+    }
+    50% {
+        font-size: 100px;
+    }
+    100% {
+        font-size: 80px;
+    }
+}
+
+#result.result-pop {
+    animation: result-pop 0.5s ease-in-out;
+}
+
 #draw-button {
     display: block;
     margin: 0 auto;
