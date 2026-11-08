@@ -127,13 +127,6 @@ function executeDraw(randomNumber, randomIndex) {
     // 抽選開始後にカード生成ボタンを無効にする
     document.getElementById("generate-button").disabled = true;
     
-    // 75個全て引き終わった場合
-    if (numbers.length === 0) {
-        result.textContent = "完";
-        document.getElementById("draw-button").disabled = true;
-        return;
-    }
-    
     // 抽選された数字のセルを取得
     const drawnCell = bingoTable.querySelector(
         `[data-number="${randomNumber}"]`
@@ -141,7 +134,7 @@ function executeDraw(randomNumber, randomIndex) {
 
     // そのセルに抽選済みクラスを追加
     drawnCell.classList.add("drawn");
-    
+
 
     // プレイヤーカードの中から、抽選された数字と一致するマスを探す。
     const playerCell = document.querySelector(
@@ -188,6 +181,9 @@ function executeDraw(randomNumber, randomIndex) {
 // 抽選ボタンをクリックしたときの処理
 document.getElementById("draw-button").addEventListener("click", async function () {
 
+    // 抽選ボタンを無効化
+    this.disabled = true;
+
     // 抽選結果を決める
     const randomIndex = Math.floor(Math.random() * numbers.length);
     const randomNumber = numbers[randomIndex];  
@@ -195,6 +191,11 @@ document.getElementById("draw-button").addEventListener("click", async function 
     await drawAnimation();
 
     executeDraw(randomNumber, randomIndex);
+
+    // 抽選ボタンを再び有効化
+    if (numbers.length > 0) {
+        this.disabled = false;
+    }
 
     // 確認用
     console.log(numbers);
