@@ -82,7 +82,7 @@ body {
 }
 
 #result.drawing {
-    animation: drawing 0.5s linear forwards;
+    animation: drawing 0.774s linear forwards;
 }
 
 @keyframes result-pop {

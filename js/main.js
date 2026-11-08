@@ -117,6 +117,10 @@ async function rerollChance(randomNumber, randomIndex) {
     const i = Math.random();
 
     if (i < 0.1) {
+        // リロールチャンス発生時の音
+        const clapsSound = new Audio("sounds/claps.mp3");
+        clapsSound.play();
+
         document.getElementById("current-number").textContent = randomNumber;
         // 選択画面を表示
         document.getElementById("reroll-area").style.display = "flex";
@@ -137,6 +141,10 @@ async function rerollChance(randomNumber, randomIndex) {
 
         // 数字を抽選し直す処理
         if (reroll) {
+            // 抽選時の音
+            const drawSound = new Audio("sounds/draw.mp3");
+            drawSound.play();
+
             randomIndex = Math.floor(Math.random() * numbers.length);
             randomNumber = numbers[randomIndex];
 
@@ -165,7 +173,11 @@ async function drawAnimation(randomNumber) {
         result.textContent = animationNumber;
     }, 25);
 
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 774));
+
+    // 数字確定時の音
+    const drawnSound = new Audio("sounds/drawn.mp3");
+    drawnSound.play();
 
     result.classList.remove("drawing");
     
@@ -209,6 +221,11 @@ function executeDraw(randomNumber, randomIndex) {
         hasBingo = true;
         modal.style.display = "flex";
         console.log("BINGO!");
+
+        // ビンゴ成立時の音
+        const fanfareSound = new Audio("sounds/fanfare.mp3");
+        fanfareSound.play();
+        
     }
 
     // モーダル(ビンゴ演出)を閉じる
@@ -237,6 +254,10 @@ function executeDraw(randomNumber, randomIndex) {
 
 // 抽選ボタンをクリックしたときの処理
 document.getElementById("draw-button").addEventListener("click", async function () {
+
+    // 抽選時の音
+    const drawSound = new Audio("sounds/draw.mp3");
+    drawSound.play();
 
     // 抽選ボタンを無効化
     this.disabled = true;
@@ -347,6 +368,9 @@ document.getElementById("generate-button").addEventListener("click", function ()
         [false, false, false, false, false],
         [false, false, false, false, false]
     ];
+
+    // 一度ビンゴした後にカードを作り直すと、次のビンゴでは演出やファンファーレが発生しなくなる為、ビンゴ状態も初期化
+    hasBingo = false;
 
     // カードを生成したタイミングで抽選ボタンが押せるようにする
     document.getElementById("draw-button").disabled = false;
