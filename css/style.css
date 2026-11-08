@@ -116,3 +116,21 @@ body {
     padding: 12px 30px;
     font-size: 18px;
 }
+
+.guide-area {
+    width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+
+    border: 1px solid #555;
+    border-radius: 12px;
+}
+
+h2 {
+    color: #ffcc00;
+}
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
