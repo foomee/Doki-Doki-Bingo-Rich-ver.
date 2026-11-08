@@ -107,11 +107,55 @@ function checkBingo() {
 }
 
 
+// リロールチャンスでボタン押した時にイベントエリアを非表示にする関数
+function closeEventArea() {
+    document.getElementById("reroll-area").style.display = "none";
+}
+
+// リロールチャンスの関数
+async function rerollChance(randomNumber, randomIndex) {
+    const i = Math.random();
+
+    if (i < 0.1) {
+        document.getElementById("current-number").textContent = randomNumber;
+        // 選択画面を表示
+        document.getElementById("reroll-area").style.display = "flex";
+
+        const reroll = await new Promise(resolve => {
+            document.getElementById("reroll-yes")
+                .addEventListener("click", function() {
+                    closeEventArea();
+                    resolve(true);
+                }, {once: true});
+
+            document.getElementById("reroll-no")
+                .addEventListener("click", function() {
+                    closeEventArea();
+                    resolve(false);
+                }, {once: true});
+        });
+
+        // 数字を抽選し直す処理
+        if (reroll) {
+            randomIndex = Math.floor(Math.random() * numbers.length);
+            randomNumber = numbers[randomIndex];
+
+            await drawAnimation(randomNumber);
+        }
+    }
+
+    // 現在の数字を返す
+    return {randomNumber, randomIndex}; 
+    // オブジェクトにするのは、randomIndexは配列のインデックス番号で、randomNumberはビンゴの数字だから
+    
+}
+
+
 // 抽選演出
-async function drawAnimation() {
+async function drawAnimation(randomNumber) {
     // .result-pop を毎回リセットする
     result.classList.remove("result-pop");
-    
+
     result.classList.add("drawing");
 
     const timerId = setInterval(function () {
@@ -126,6 +170,7 @@ async function drawAnimation() {
     result.classList.remove("drawing");
     
     clearInterval(timerId);
+    result.textContent = randomNumber;
 }
 
 // 抽選処理
@@ -197,11 +242,20 @@ document.getElementById("draw-button").addEventListener("click", async function 
     this.disabled = true;
 
     // 抽選結果を決める
-    const randomIndex = Math.floor(Math.random() * numbers.length);
-    const randomNumber = numbers[randomIndex];  
+    let randomIndex = Math.floor(Math.random() * numbers.length);
+    let randomNumber = numbers[randomIndex];
 
-    await drawAnimation();
+    // 抽選演出の関数呼び出し
+    await drawAnimation(randomNumber);
 
+    // リロールチャンス
+    const rerollResult = await rerollChance(randomNumber, randomIndex);    
+
+    // 引き直した結果を反映
+    randomNumber = rerollResult.randomNumber;
+    randomIndex = rerollResult.randomIndex;
+
+    // 抽選処理の関数呼び出し
     executeDraw(randomNumber, randomIndex);
 
     // 抽選ボタンを再び有効化

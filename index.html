@@ -14,6 +14,12 @@
         </div>
     </div>
 
+    <div class="modal" id="reroll-modal">
+        <div class="modal-content">
+            <h2></h2>
+        </div>
+    </div>
+
     <!-- ビンゴ部分 -->
     <div class="container">
         <div class="left">
@@ -31,6 +37,17 @@
         </div>
     </div>
 
+    <!-- イベント表示部分 -->
+    <div class="container event-area" id="reroll-area">
+        <div class="event-content">
+            <h2 class="random-event">🔄リロールチャンス！</h2>
+            <p>数字を引き直しますか？</p>
+            <button id="reroll-yes">引き直す</button>
+            <button id="reroll-no">　<span id="current-number"></span>　で確定</button>
+        </div>
+    </div>
+
+    <!-- プレイヤーカード部分 -->
     <div class="container player-area">
         <div class="player-card"></div>
         <button id="generate-button">カードを生成する</button>
@@ -46,14 +63,15 @@
 
             <hr>
 
-            <h2>ランダムイベント（未実装）</h2>
+            <h2>ランダムイベント</h2>
             <p id="event-description">⚠️抽選中に、様々なイベントが発生することがあります⚠️</p>
-            <h3>🎯ラッキーナンバー</h3>
-            <p>好きな数字を選ぶことができます。</p>
             <h3>🔄リロールチャンス</h3>
             <p>数字を引き直すことができます。</p>
-            <h3>💀アンラッキーナンバー</h3>
-            <p>ランダムに数字が選ばれて、その数字が抽選前に戻ります。</p>
+            <p>同じ数字を引くこともあるかもしれません。</p>
+            <h3>🎯ラッキーナンバー（未実装）</h3>
+            <p>好きな数字を選び、その数字を開けることができます。</p>
+            <h3>💀アンラッキーナンバー（未実装）</h3>
+            <p>ランダムに数字が選ばれて、その数字が抽選前の状態に戻ります。</p>
         </div>
     </div>
 
