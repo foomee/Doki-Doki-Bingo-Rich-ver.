@@ -126,6 +126,20 @@ body {
     gap: 10px;
 }
 
+.event-alert {
+    display: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+#reroll,
+#lucky,
+#unlucky {
+    display: none;
+}
+
 .event-area {
     display: none;
     justify-content: center;

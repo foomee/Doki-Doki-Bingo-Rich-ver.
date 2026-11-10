@@ -38,14 +38,40 @@
     </div>
 
     <!-- イベント表示部分 -->
+    <div class="container event-alert">
+        <h1>⚠️ ランダムイベント発生 ⚠️</h1>
+    </div>
+    
     <div class="container event-area" id="reroll-area">
         <div class="event-content">
             <h2 class="random-event">🔄リロールチャンス！</h2>
             <p>数字を引き直しますか？</p>
-            <button id="reroll-yes">引き直す</button>
-            <button id="reroll-no">　<span id="current-number"></span>　で確定</button>
+            <button type="button" id="reroll-yes">引き直す</button>
+            <button type="button" id="reroll-no">　<span id="current-number"></span>　で確定</button>
         </div>
     </div>
+
+    <div class="container event-area" id="lucky-area">
+        <div class="event-content">
+            <h2 class="random-event">🎯ラッキーナンバー！</h2>
+            <p>開けたい数字を選んでください</p>
+            <select id="lucky-select">
+                <option value="" selected disabled>ここから数字を選択してください</option>
+            </select>
+
+            <button type="button" id="lucky-confirm">決定</button>
+        </div>
+    </div>
+
+    <div class="container event-area" id="unlucky-area">
+        <div class="event-content">
+            <h2 class="random-event">💀アンラッキーナンバー！</h2>
+            <p>　<span id="unlucky-number"></span>　が閉じてしまった！</p>
+        </div>
+    </div>
+
+
+
 
     <!-- プレイヤーカード部分 -->
     <div class="container player-area">
