@@ -157,6 +157,11 @@ h1 {
     color: red;
 }
 
+select {
+    font-size: 18px;
+    padding: 12px 0px;
+}
+
 .player-area {
     display: flex;
     flex-direction: column;
@@ -180,6 +185,7 @@ button {
 
 .guide-area {
     width: 800px;
+    max-width: calc(100% - 20px);
     margin: 40px auto;
     padding: 20px;
 

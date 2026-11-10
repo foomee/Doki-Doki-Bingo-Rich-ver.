@@ -164,7 +164,7 @@ async function luckyNumber(shouldRun) {
     if (shouldRun) {
 
         // ラッキーナンバー当選時の音
-        const clapsSound = new Audio("sounds/claps.mp3");
+        const clapsSound = new Audio("sounds/bull.mp3");
         clapsSound.play();
 
         showEvent();
@@ -174,7 +174,7 @@ async function luckyNumber(shouldRun) {
         result.textContent = "🎯";
 
         // 数字選択肢を最新の状態に更新
-        luckySelect.innerHTML = '<option value="" selected disabled>ここから数字を選択してください</option>';
+        luckySelect.innerHTML = '<option value="" selected disabled>数字を選択してください</option>';
 
         numbers.forEach(function (number) {
             const option = document.createElement("option");
@@ -413,8 +413,6 @@ document.getElementById("draw-button").addEventListener("click", async function 
 
 
     // イベントの発生判定
-    // 現在はテスト用に高確率に設定
-
     const isLucky = Math.random() < 0.02;
 
     // ラッキーが発生していない場合のみリロールを判定
