@@ -413,13 +413,13 @@ document.getElementById("draw-button").addEventListener("click", async function 
 
 
     // イベントの発生判定
-    const isLucky = Math.random() < 0.02;
+    const isLucky = Math.random() < 0.03;
 
     // ラッキーが発生していない場合のみリロールを判定
     const isReroll = !isLucky && Math.random() < 0.1;
 
     // アンラッキーは独立して判定
-    const isUnlucky = Math.random() < 0.03;
+    const isUnlucky = Math.random() < 0.05;
 
 
     // 抽選結果を決める
